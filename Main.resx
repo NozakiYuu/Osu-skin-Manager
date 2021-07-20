@@ -146,6 +146,9 @@
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>640, 450</value>
+  </data>
   <data name="previewItToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
   </data>
@@ -158,11 +161,17 @@
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
   </data>
+  <data name="&gt;&gt;replaceBtn.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
   <data name="&gt;&gt;pictureBox2.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
   <data name="toBox2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>117, 22</value>
+  </data>
+  <data name="&gt;&gt;deleteToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="refreshMenu.Text" xml:space="preserve">
     <value>Refresh all</value>
@@ -175,6 +184,9 @@
   </data>
   <data name="&gt;&gt;pictureBox1.Parent" xml:space="preserve">
     <value>$this</value>
+  </data>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="filesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>42, 20</value>
@@ -239,12 +251,6 @@
   <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;MenuBar.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="MenuBar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
@@ -302,6 +308,9 @@
   <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
+  <data name="&gt;&gt;replaceBtn.Name" xml:space="preserve">
+    <value>replaceBtn</value>
+  </data>
   <data name="pictureBox2.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
@@ -342,9 +351,6 @@
   <data name="treeRightClickMenu.Size" type="System.Drawing.Size, System.Drawing">
     <value>118, 70</value>
   </data>
-  <data name="&gt;&gt;refreshMenu.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="toBox2ToolStripMenuItem.Text" xml:space="preserve">
     <value>to Box 2</value>
   </data>
@@ -357,20 +363,17 @@
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="pictureBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>444, 140</value>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;treePanel.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="&gt;&gt;MenuBar.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
   <data name="&gt;&gt;treePanel.Name" xml:space="preserve">
     <value>treePanel</value>
   </data>
-  <data name="&gt;&gt;replaceBtn.Name" xml:space="preserve">
-    <value>replaceBtn</value>
+  <data name="&gt;&gt;MenuBar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toBox2ToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -381,8 +384,8 @@
   <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="pictureBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>444, 140</value>
   </data>
   <data name="&gt;&gt;openInExplorerToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -420,20 +423,14 @@
   <data name="xBtn.Size" type="System.Drawing.Size, System.Drawing">
     <value>24, 24</value>
   </data>
-  <data name="&gt;&gt;xBtn.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
   <data name="menuStrip1.Text" xml:space="preserve">
     <value>menuStrip1</value>
   </data>
-  <data name="&gt;&gt;replaceBtn.Parent" xml:space="preserve">
+  <data name="&gt;&gt;MenuBar.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
     <value>640, 24</value>
-  </data>
-  <data name="&gt;&gt;MenuBar.Name" xml:space="preserve">
-    <value>MenuBar</value>
   </data>
   <data name="&gt;&gt;previewFileToolStripMenuItem.Name" xml:space="preserve">
     <value>previewFileToolStripMenuItem</value>
@@ -444,8 +441,11 @@
   <data name="&gt;&gt;refreshMenu.Name" xml:space="preserve">
     <value>refreshMenu</value>
   </data>
-  <data name="&gt;&gt;deleteToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="replaceBtn.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="&gt;&gt;xBtn.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="xBtn.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -459,14 +459,14 @@
   <data name="refreshMenu.Size" type="System.Drawing.Size, System.Drawing">
     <value>169, 22</value>
   </data>
-  <data name="replaceBtn.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
+  <data name="&gt;&gt;MenuBar.Name" xml:space="preserve">
+    <value>MenuBar</value>
   </data>
   <data name="&gt;&gt;previewItToolStripMenuItem.Name" xml:space="preserve">
     <value>previewItToolStripMenuItem</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>640, 450</value>
+  <data name="MenuBar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -483,8 +483,8 @@
   <data name="&gt;&gt;toBox1ToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;refreshMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;openInExplorerToolStripMenuItem.Name" xml:space="preserve">
     <value>openInExplorerToolStripMenuItem</value>

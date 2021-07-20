@@ -66,8 +66,6 @@ namespace Osu_skin_Manager
             this.skinTree.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(79)))), ((int)(((byte)(99)))));
             this.skinTree.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.skinTree.Name = "skinTree";
-            this.skinTree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            ((System.Windows.Forms.TreeNode)(resources.GetObject("skinTree.Nodes")))});
             this.skinTree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.skinTree_NodeMouseClick);
             // 
             // pictureBox1
