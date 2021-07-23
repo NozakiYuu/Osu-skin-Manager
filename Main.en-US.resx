@@ -122,15 +122,9 @@
     <value>Consolas, 9.75pt, style=Bold</value>
   </data>
   <data name="skinTree.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="skinTree.Size" type="System.Drawing.Size, System.Drawing">
-    <value>296, 423</value>
-  </data>
-  <data name="treePanel.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 27</value>
   </data>
-  <data name="treePanel.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="skinTree.Size" type="System.Drawing.Size, System.Drawing">
     <value>296, 423</value>
   </data>
   <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
@@ -197,14 +191,8 @@
   <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>109, 22</value>
   </data>
-  <data name="box1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>103, 22</value>
-  </data>
   <data name="box1ToolStripMenuItem.Text" xml:space="preserve">
     <value>Box 1</value>
-  </data>
-  <data name="box2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>103, 22</value>
   </data>
   <data name="box2ToolStripMenuItem.Text" xml:space="preserve">
     <value>Box 2</value>

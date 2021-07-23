@@ -60,23 +60,33 @@ namespace Osu_skin_Manager
             return null;
         }
 
-        public string GetFullPathNode(TreeNode e) {
-            string return_ = e.Text;
+        public string GetFullNodePath(TreeNode e) {
+            if (e.Text == "Skins") return this.valid_path;
+
+            string return_ = this.valid_path;
             TreeNode eb = null ;
             for (int i = 0; i < e.Level-1; i++)
             {
                 if (eb == null)
                 {
                     eb = e.Parent;
-                    return_ = e.Parent.Text + @"\" + return_;
+                    return_ = Path.Combine(return_, e.Parent.Text);
                 }
                 else
                 {
                     eb = eb.Parent;
-                    return_ = eb.Text + @"\" + return_;
+                    return_ = eb.Text;
                 }
             }
-            return Path.Combine(this.valid_path, return_);
+            return_ = Path.GetFullPath(Path.Combine(return_,e.Text));
+            if (File.Exists(return_))
+            {
+                return return_;
+            } else if (Directory.Exists(return_)) {
+                return return_;
+            }
+            Console.WriteLine("Invalid path: " + return_);
+            return "";
         }
 
         internal TreeNode GetNodes()
@@ -100,15 +110,40 @@ namespace Osu_skin_Manager
             List<TreeNode> tempNode = new List<TreeNode>();
             foreach (string folder_left in Directory.GetDirectories(path_to_folder))
             {
+                TreeNode directoryNode = new TreeNode(Path.GetFileName(folder_left));
                 this.GetFileFromPath(folder_left).ForEach(node => {
-                    tempNode.Add(node);
+                    directoryNode.Nodes.Add(node);
                 });
+                tempNode.Add(directoryNode);
             }
             foreach (string path_to_file in Directory.GetFiles(path_to_folder))
             {
                 tempNode.Add(new TreeNode(Path.GetFileName(path_to_file)));
             }
             return tempNode;
+        }
+
+        public void Delete(TreeNode node) {
+            string path_to_file = this.GetFullNodePath(node);
+            try
+            {
+                File.Delete(path_to_file);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(
+                    "Error" + e.Message,
+                    "Error File!",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
+        }
+
+        public void Add() {
+        }
+
+        public void Save() { 
         }
     }
 }

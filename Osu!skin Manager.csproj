@@ -62,8 +62,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>AppSetting.settings</DependentUpon>
     </Compile>
-    <Compile Include="SkinManager.cs" />
-    <Compile Include="Utils.cs" />
+    <Compile Include="Func\SkinManager.cs" />
+    <Compile Include="Utils\StupidUtils.cs" />
     <EmbeddedResource Include="Main.en-US.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
@@ -96,6 +96,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
