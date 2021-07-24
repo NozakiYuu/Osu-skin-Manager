@@ -22,17 +22,5 @@ namespace Osu_skin_Manager.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("%localappdata%\\osu!\\Skins\\")]
-        public string Path {
-            get {
-                return ((string)(this["Path"]));
-            }
-            set {
-                this["Path"] = value;
-            }
-        }
     }
 }
