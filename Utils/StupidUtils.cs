@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -29,6 +29,19 @@ namespace Osu_skin_Manager
             }
             //Clean up file path so it can be navigated OK
             
+        }
+
+        public static bool ReplaceFile(string path1, string path2) {
+            try
+            {
+                File.Copy(path1, path2, true);
+                return true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Exception at ReplaceFile()", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
         }
     }
 }

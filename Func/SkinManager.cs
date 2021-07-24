@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Osu_skin_Manager
 {
-    class SkinManager
+    public class SkinManager
     {
         // First one alway be SystemPath
         private string UserPath;
@@ -39,21 +39,6 @@ namespace Osu_skin_Manager
                     MessageBoxIcon.Error
                 );
             }
-        }
-
-        public bool setUserPath(string path) {
-            if (Directory.Exists(path))
-            {
-                string b = path.Substring(path.Length - 5).ToLower();
-                if (b == "skins")
-                {
-                    this.valid_path = path;
-                    AppSetting.Default.UserPath = path;
-                    AppSetting.Default.Save();
-                    return true;
-                }
-            }
-            return false;
         }
 
         private TreeNode newCustomTreeNode(string name) {
@@ -140,10 +125,5 @@ namespace Osu_skin_Manager
             }
         }
 
-        public void Add() {
-        }
-
-        public void Save() { 
-        }
     }
 }

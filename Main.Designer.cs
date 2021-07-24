@@ -35,8 +35,10 @@ namespace Osu_skin_Manager
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.MenuBar = new System.Windows.Forms.MenuStrip();
             this.filesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openOutsideMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.refreshMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingMenuBar = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.replaceBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.xBtn = new System.Windows.Forms.Button();
@@ -54,7 +56,7 @@ namespace Osu_skin_Manager
             this.toBox1btn = new System.Windows.Forms.Button();
             this.box1Tooltip = new System.Windows.Forms.ToolTip(this.components);
             this.box2Tooltip = new System.Windows.Forms.ToolTip(this.components);
-            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.minimizedBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.MenuBar.SuspendLayout();
@@ -99,7 +101,7 @@ namespace Osu_skin_Manager
             this.MenuBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
             this.MenuBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.filesToolStripMenuItem,
-            this.settingsToolStripMenuItem});
+            this.helpMenu});
             this.MenuBar.Location = new System.Drawing.Point(0, 0);
             this.MenuBar.Name = "MenuBar";
             this.MenuBar.Size = new System.Drawing.Size(640, 24);
@@ -111,7 +113,6 @@ namespace Osu_skin_Manager
             // filesToolStripMenuItem
             // 
             this.filesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openOutsideMenu,
             this.refreshMenu});
             this.filesToolStripMenuItem.Font = new System.Drawing.Font("Consolas", 9.75F);
             this.filesToolStripMenuItem.ForeColor = System.Drawing.SystemColors.HotTrack;
@@ -119,19 +120,36 @@ namespace Osu_skin_Manager
             this.filesToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.filesToolStripMenuItem.Text = "Files";
             // 
-            // openOutsideMenu
-            // 
-            this.openOutsideMenu.Name = "openOutsideMenu";
-            this.openOutsideMenu.Size = new System.Drawing.Size(221, 22);
-            this.openOutsideMenu.Text = "Open osu skins folder";
-            this.openOutsideMenu.Click += new System.EventHandler(this.openExToolStripMenuItem_Click);
-            // 
             // refreshMenu
             // 
             this.refreshMenu.Name = "refreshMenu";
-            this.refreshMenu.Size = new System.Drawing.Size(221, 22);
+            this.refreshMenu.Size = new System.Drawing.Size(151, 22);
             this.refreshMenu.Text = "Refresh all";
             this.refreshMenu.Click += new System.EventHandler(this.refreshAllToolStripMenuItem_Click);
+            // 
+            // helpMenu
+            // 
+            this.helpMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.settingMenuBar,
+            this.aboutMenu});
+            this.helpMenu.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.helpMenu.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.helpMenu.Name = "helpMenu";
+            this.helpMenu.Size = new System.Drawing.Size(47, 20);
+            this.helpMenu.Text = "Help";
+            // 
+            // settingMenuBar
+            // 
+            this.settingMenuBar.Name = "settingMenuBar";
+            this.settingMenuBar.Size = new System.Drawing.Size(130, 22);
+            this.settingMenuBar.Text = "Settings";
+            this.settingMenuBar.Click += new System.EventHandler(this.settingMenuBar_Click);
+            // 
+            // aboutMenu
+            // 
+            this.aboutMenu.Name = "aboutMenu";
+            this.aboutMenu.Size = new System.Drawing.Size(130, 22);
+            this.aboutMenu.Text = "About";
             // 
             // replaceBtn
             // 
@@ -166,7 +184,7 @@ namespace Osu_skin_Manager
             this.xBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.xBtn.Font = new System.Drawing.Font("Consolas", 11.25F);
             this.xBtn.ForeColor = System.Drawing.Color.Red;
-            this.xBtn.Location = new System.Drawing.Point(607, 0);
+            this.xBtn.Location = new System.Drawing.Point(595, 0);
             this.xBtn.Name = "xBtn";
             this.xBtn.Size = new System.Drawing.Size(33, 24);
             this.xBtn.TabIndex = 6;
@@ -252,9 +270,8 @@ namespace Osu_skin_Manager
             this.box1Label.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.box1Label.Location = new System.Drawing.Point(311, 273);
             this.box1Label.Name = "box1Label";
-            this.box1Label.Size = new System.Drawing.Size(42, 15);
+            this.box1Label.Size = new System.Drawing.Size(0, 15);
             this.box1Label.TabIndex = 9;
-            this.box1Label.Text = "Empty";
             this.box1Label.MouseHover += new System.EventHandler(this.box1Label_MouseHover);
             // 
             // box2Label
@@ -264,9 +281,8 @@ namespace Osu_skin_Manager
             this.box2Label.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.box2Label.Location = new System.Drawing.Point(497, 273);
             this.box2Label.Name = "box2Label";
-            this.box2Label.Size = new System.Drawing.Size(42, 15);
+            this.box2Label.Size = new System.Drawing.Size(0, 15);
             this.box2Label.TabIndex = 8;
-            this.box2Label.Text = "Empty";
             this.box2Label.MouseHover += new System.EventHandler(this.box2Label_MouseHover);
             // 
             // toBox2btn
@@ -309,14 +325,21 @@ namespace Osu_skin_Manager
             // 
             this.box2Tooltip.Active = false;
             // 
-            // settingsToolStripMenuItem
+            // minimizedBtn
             // 
-            this.settingsToolStripMenuItem.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.settingsToolStripMenuItem.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
-            this.settingsToolStripMenuItem.Text = "Settings";
-            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
+            this.minimizedBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            this.minimizedBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.minimizedBtn.FlatAppearance.BorderSize = 0;
+            this.minimizedBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.minimizedBtn.Font = new System.Drawing.Font("Consolas", 11.25F);
+            this.minimizedBtn.ForeColor = System.Drawing.Color.Red;
+            this.minimizedBtn.Location = new System.Drawing.Point(569, 3);
+            this.minimizedBtn.Name = "minimizedBtn";
+            this.minimizedBtn.Size = new System.Drawing.Size(29, 21);
+            this.minimizedBtn.TabIndex = 8;
+            this.minimizedBtn.Text = "-";
+            this.minimizedBtn.UseVisualStyleBackColor = false;
+            this.minimizedBtn.Click += new System.EventHandler(this.minimizedBtnClick);
             // 
             // Main
             // 
@@ -325,6 +348,7 @@ namespace Osu_skin_Manager
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.CancelButton = this.xBtn;
             this.ClientSize = new System.Drawing.Size(640, 450);
+            this.Controls.Add(this.minimizedBtn);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.xBtn);
             this.Controls.Add(this.MenuBar);
@@ -350,7 +374,6 @@ namespace Osu_skin_Manager
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.MenuStrip MenuBar;
         private System.Windows.Forms.ToolStripMenuItem filesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openOutsideMenu;
         private System.Windows.Forms.ToolStripMenuItem refreshMenu;
         private System.Windows.Forms.Button replaceBtn;
         private System.Windows.Forms.Label label1;
@@ -369,7 +392,10 @@ namespace Osu_skin_Manager
         private System.Windows.Forms.ToolTip box1Tooltip;
         private System.Windows.Forms.ToolTip box2Tooltip;
         private System.Windows.Forms.ToolStripMenuItem openInExplorerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpMenu;
+        private System.Windows.Forms.ToolStripMenuItem settingMenuBar;
+        private System.Windows.Forms.ToolStripMenuItem aboutMenu;
+        private System.Windows.Forms.Button minimizedBtn;
     }
 }
 

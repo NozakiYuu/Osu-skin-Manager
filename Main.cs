@@ -3,7 +3,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
-using System.Diagnostics;
+using Osu_skin_Manager.GUIs;
 
 namespace Osu_skin_Manager
 {
@@ -24,8 +24,8 @@ namespace Osu_skin_Manager
         );
 
         private SkinManager manager;
-        private string pic2_path;
-        private string pic1_path;
+        private string pic1_path = null;
+        private string pic2_path = null;
         private Point lastPoint;
 
         public Main()
@@ -34,29 +34,7 @@ namespace Osu_skin_Manager
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
         }
 
-        private void openExToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using (FolderBrowserDialog openFolderDialog = new FolderBrowserDialog())
-            {
-                if (openFolderDialog.ShowDialog() == DialogResult.OK)
-                {
-                    if (this.manager.setUserPath(openFolderDialog.SelectedPath)) {
-                        this.skinTree.Nodes.Clear();
-                        this.skinTree.Nodes.Add(this.manager.GetNodes());
-                        MessageBox.Show("Changed to "+openFolderDialog.SelectedPath, "Success!",MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return;
-                    }
-                }
-            }
-            MessageBox.Show(
-                "Sorry but i couldn't found your osu skins folder, please set it manual in File > Open osu skins folder",
-                "Invalid skins folder",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Error
-            );
-        }
-
-        private void refreshAllToolStripMenuItem_Click(object sender, EventArgs e)
+        public void refreshAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.skinTree.Nodes.Clear();
             this.skinTree.Nodes.Add(this.manager.GetNodes());
@@ -70,7 +48,19 @@ namespace Osu_skin_Manager
 
         private void replaceBtn_Click(object sender, EventArgs e)
         {
+            if (pic1_path == null || pic2_path == null)
+                MessageBox.Show("You havent select file to the box 1 and 2 bruh", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (StupidUtils.ReplaceFile(pic1_path, pic2_path))
+            {
+                this.pictureBox1.Image = null;
+                this.pictureBox1.ImageLocation = null;
 
+                this.pictureBox2.Image = null;
+                this.pictureBox2.ImageLocation = null;
+                string pic1_name = Path.GetFileName(this.pic1_path);
+                string pic2_name = Path.GetFileName(this.pic2_path);
+                MessageBox.Show("Succeed replaced file "+pic2_name+" by "+pic1_name, "Succeed!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void xBtn_Click(object sender, EventArgs e)
@@ -196,7 +186,7 @@ namespace Osu_skin_Manager
                 {
                     if (!Path.HasExtension(openFileDialog.FileName))
                     {
-                        MessageBox.Show("Are you trying to add the folder to this???", "Error!??!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Are you trying to add a folder to this???", "Error!??!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     string[] name = openFileDialog.FileName.Split('\\');
@@ -205,6 +195,11 @@ namespace Osu_skin_Manager
 
                     string srcFile = openFileDialog.FileName;
                     string destFile = Path.Combine(this.manager.GetFullNodePath(skinTree.SelectedNode), Path.GetFileName(srcFile));
+                    if (!File.Exists(destFile))
+                    {
+                        MessageBox.Show("Error: "+ destFile, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                     File.Copy(openFileDialog.FileName, destFile, true);
                 }
             }
@@ -231,24 +226,29 @@ namespace Osu_skin_Manager
             StupidUtils.OpenInExplorer(b);
         }
 
-        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void settingMenuBar_Click(object sender, EventArgs e)
         {
+            new SettingForm(this.manager).ShowDialog(this);
+        }
 
+        private void minimizedBtnClick(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
         /* This thing for right click menu, but it's now kinda broken :(
-* 
-private void previewFileToolStripMenuItem_Click(object sender, EventArgs e)
-{
-string path = this.manager.GetFullPathNode(skinTree.SelectedNode);
-if (Path.HasExtension(path))
-{
-Process.Start(path);
-}
-}
+        * 
+        private void previewFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string path = this.manager.GetFullPathNode(skinTree.SelectedNode);
+            if (Path.HasExtension(path))
+            {
+                Process.Start(path);
+            }
+        }
 
-private void openInExplorerToolStripMenuItem_Click(object sender, EventArgs e)
-{
-Utils.OpenInExplorer(this.manager.GetFullPathNode(skinTree.SelectedNode));
-}*/
+        private void openInExplorerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utils.OpenInExplorer(this.manager.GetFullPathNode(skinTree.SelectedNode));
+        }*/
     }
 }
