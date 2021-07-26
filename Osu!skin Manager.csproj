@@ -13,7 +13,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>P:\</PublishUrl>
+    <PublishUrl>/publish/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -83,6 +83,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GUIs\DragModeUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\DragModeUI.Designer.cs">
+      <DependentUpon>DragModeUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Func\Settings.cs" />
     <Compile Include="GUIs\SettingForm.cs">
       <SubType>Form</SubType>
@@ -90,10 +96,10 @@
     <Compile Include="GUIs\SettingForm.Designer.cs">
       <DependentUpon>SettingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Main.cs">
+    <Compile Include="GUIs\Main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Main.Designer.cs">
+    <Compile Include="GUIs\Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -105,13 +111,16 @@
     </Compile>
     <Compile Include="Func\SkinManager.cs" />
     <Compile Include="Utils\StupidUtils.cs" />
+    <EmbeddedResource Include="GUIs\DragModeUI.resx">
+      <DependentUpon>DragModeUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUIs\SettingForm.resx">
       <DependentUpon>SettingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Main.en-US.resx">
+    <EmbeddedResource Include="GUIs\Main.en-US.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Main.resx">
+    <EmbeddedResource Include="GUIs\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -153,6 +162,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="resources\icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

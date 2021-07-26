@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Osu_skin_Manager.Func
@@ -7,7 +8,36 @@ namespace Osu_skin_Manager.Func
     {
         private string userPath = AppSetting.Default.UserPath;
         private bool isChanged = false;
-        public bool setUserPath(string path)
+        #region Public method only
+        public dynamic Set(string key, dynamic args) {
+            switch (key.ToLower())
+            {
+                case "userpath":
+                    return (bool)this.SetUserPath((string)args);
+                case "dragmode":
+                    return (bool)this.SetDragMode((bool)args);
+                default:
+                    throw new System.Exception("Invalid value: "+key);
+            }
+        }
+
+        public dynamic getSettings()
+        {
+            return new
+            {
+                userPath = this.userPath
+            };
+        }
+        #endregion
+
+        private bool SetDragMode(bool args)
+        {
+            this.isChanged = true;
+            AppSetting.Default.DragMode = args;
+            return true;
+        }
+
+        private bool SetUserPath(string path)
         {
             if (Directory.Exists(path))
             {
@@ -22,15 +52,7 @@ namespace Osu_skin_Manager.Func
             return false;
         }
 
-        public dynamic getSettings() {
-            return new {
-                userPath = this.userPath
-            };
-        }
-
-        //<summary>
-        //<returns>If user choosed yes, no or setting havent change then return true, else cancel then false</returns>
-        //</summary>
+        ///<returns>true if yes or no, false if cancel</returns>
         internal bool SaveOnExit()
         {
             if (!this.isChanged) return true;

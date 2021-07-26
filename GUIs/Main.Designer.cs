@@ -30,6 +30,7 @@ namespace Osu_skin_Manager
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.skinTree = new System.Windows.Forms.TreeView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -123,7 +124,7 @@ namespace Osu_skin_Manager
             // refreshMenu
             // 
             this.refreshMenu.Name = "refreshMenu";
-            this.refreshMenu.Size = new System.Drawing.Size(151, 22);
+            this.refreshMenu.Size = new System.Drawing.Size(180, 22);
             this.refreshMenu.Text = "Refresh all";
             this.refreshMenu.Click += new System.EventHandler(this.refreshAllToolStripMenuItem_Click);
             // 
@@ -141,14 +142,14 @@ namespace Osu_skin_Manager
             // settingMenuBar
             // 
             this.settingMenuBar.Name = "settingMenuBar";
-            this.settingMenuBar.Size = new System.Drawing.Size(130, 22);
+            this.settingMenuBar.Size = new System.Drawing.Size(180, 22);
             this.settingMenuBar.Text = "Settings";
             this.settingMenuBar.Click += new System.EventHandler(this.settingMenuBar_Click);
             // 
             // aboutMenu
             // 
             this.aboutMenu.Name = "aboutMenu";
-            this.aboutMenu.Size = new System.Drawing.Size(130, 22);
+            this.aboutMenu.Size = new System.Drawing.Size(180, 22);
             this.aboutMenu.Text = "About";
             // 
             // replaceBtn
@@ -333,7 +334,7 @@ namespace Osu_skin_Manager
             this.minimizedBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.minimizedBtn.Font = new System.Drawing.Font("Consolas", 11.25F);
             this.minimizedBtn.ForeColor = System.Drawing.Color.Red;
-            this.minimizedBtn.Location = new System.Drawing.Point(569, 3);
+            this.minimizedBtn.Location = new System.Drawing.Point(560, 2);
             this.minimizedBtn.Name = "minimizedBtn";
             this.minimizedBtn.Size = new System.Drawing.Size(29, 21);
             this.minimizedBtn.TabIndex = 8;
@@ -353,6 +354,7 @@ namespace Osu_skin_Manager
             this.Controls.Add(this.xBtn);
             this.Controls.Add(this.MenuBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main";
             this.Text = "Osu!Skin Editor";
             this.Load += new System.EventHandler(this.Main_Load);

@@ -23,8 +23,6 @@ namespace Osu_skin_Manager.GUIs
             InitializeComponent();
             this.manager = manager;
             this.settings = new Settings();
-            var settings = this.settings.getSettings();
-            this.userPathTxt.Text = settings.userPath;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -33,7 +31,7 @@ namespace Osu_skin_Manager.GUIs
             {
                 if (openFolderDialog.ShowDialog() == DialogResult.OK)
                 {
-                    if (this.settings.setUserPath(openFolderDialog.SelectedPath))
+                    if ((bool) this.settings.Set("UserPath", openFolderDialog.SelectedPath))
                     {
                         MessageBox.Show("Changed to " + openFolderDialog.SelectedPath, "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return;
@@ -65,6 +63,17 @@ namespace Osu_skin_Manager.GUIs
         private void SettingForm_MouseDown(object sender, MouseEventArgs e)
         {
             this.lastPoint = new Point(e.X, e.Y);
+        }
+
+        private void SettingForm_Load(object sender, EventArgs e)
+        {
+            var settings = this.settings.getSettings();
+            this.userPathTxt.Text = settings.userPath;
+        }
+
+        private void dragmodeCheckBox_Changed(object sender, EventArgs e)
+        {
+            this.settings.Set("dragmode", this.DragModeCheckBox.Checked);
         }
     }
 }

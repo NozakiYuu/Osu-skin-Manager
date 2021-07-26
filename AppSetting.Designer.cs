@@ -34,5 +34,17 @@ namespace Osu_skin_Manager {
                 this["UserPath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DragMode {
+            get {
+                return ((bool)(this["DragMode"]));
+            }
+            set {
+                this["DragMode"] = value;
+            }
+        }
     }
 }

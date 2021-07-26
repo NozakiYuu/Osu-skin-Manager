@@ -34,6 +34,7 @@ namespace Osu_skin_Manager.GUIs
             this.button1 = new System.Windows.Forms.Button();
             this.xBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.DragModeCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // userPathTxt
@@ -85,11 +86,24 @@ namespace Osu_skin_Manager.GUIs
             this.label1.TabIndex = 4;
             this.label1.Text = "Setting";
             // 
+            // DragModeCheckBox
+            // 
+            this.DragModeCheckBox.AutoSize = true;
+            this.DragModeCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DragModeCheckBox.Location = new System.Drawing.Point(15, 77);
+            this.DragModeCheckBox.Name = "DragModeCheckBox";
+            this.DragModeCheckBox.Size = new System.Drawing.Size(97, 19);
+            this.DragModeCheckBox.TabIndex = 6;
+            this.DragModeCheckBox.Text = "Drag Mode";
+            this.DragModeCheckBox.UseVisualStyleBackColor = true;
+            this.DragModeCheckBox.CheckedChanged += new System.EventHandler(this.dragmodeCheckBox_Changed);
+            // 
             // SettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(369, 128);
+            this.ClientSize = new System.Drawing.Size(369, 117);
+            this.Controls.Add(this.DragModeCheckBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.xBtn);
             this.Controls.Add(this.button1);
@@ -98,6 +112,7 @@ namespace Osu_skin_Manager.GUIs
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "SettingForm";
             this.Text = "Settings!";
+            this.Load += new System.EventHandler(this.SettingForm_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SettingForm_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.SettingForm_MouseMove);
             this.ResumeLayout(false);
@@ -112,5 +127,6 @@ namespace Osu_skin_Manager.GUIs
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button xBtn;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox DragModeCheckBox;
     }
 }
