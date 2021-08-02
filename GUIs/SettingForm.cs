@@ -35,17 +35,31 @@ namespace Osu_skin_Manager.GUIs
                 {
                     if (this.settings.setUserPath(openFolderDialog.SelectedPath))
                     {
-                        MessageBox.Show("Changed to " + openFolderDialog.SelectedPath, "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Changed the skins path to " + openFolderDialog.SelectedPath + ".\nYou should refresh the skins manager with the Files -> Refresh All button.", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        // LilShieru added the path displaying update when the path is successfully changed.
+                        userPathTxt.Text = openFolderDialog.SelectedPath;
+                        // And the most important...
+                        this.manager.valid_path = openFolderDialog.SelectedPath;
+                        return;
+                    }
+                    else
+                    {
+                        // LilShieru added this one. Why not?
+                        MessageBox.Show("Cannot change the osu! skins path. Please try again!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                 }
             }
-            MessageBox.Show(
-                "Sorry but i couldn't found your osu skins folder, please set it manual in File > Open osu skins folder",
-                "Invalid skins folder",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Error
-            );
+            /*
+            LilShieru: WTF is this???
+             
+                MessageBox.Show(
+                    "Sorry but i couldn't found your osu skins folder, please set it manual in File > Open osu skins folder",
+                    "Invalid skins folder",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+             */
         }
 
         private void xBtn_Click(object sender, EventArgs e)

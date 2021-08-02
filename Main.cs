@@ -9,8 +9,6 @@ namespace Osu_skin_Manager
 {
     public partial class Main : Form
     {
-
-
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
         (
@@ -36,8 +34,16 @@ namespace Osu_skin_Manager
 
         public void refreshAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.skinTree.Nodes.Clear();
-            this.skinTree.Nodes.Add(this.manager.GetNodes());
+            // LilShieru: Added the path checking part before refreshing.
+            if (this.manager.valid_path != null)
+            {
+                this.skinTree.Nodes.Clear();
+                this.skinTree.Nodes.Add(this.manager.GetNodes());
+            }
+            else
+            {
+                MessageBox.Show("You need to select a skins folder in the Help -> Settings part.");
+            }
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -108,50 +114,74 @@ namespace Osu_skin_Manager
         }
 
         private void Box1Placing(object sender, EventArgs e) {
-            string pathFile = this.manager.GetFullNodePath(skinTree.SelectedNode);
-            try
+            /*
+             LilShieru added the nodes checking part, otherwise it will cause an exception if no skin is selected.
+             Trust me, I actually downloaded the osu! game just to check if this thing works without any errors :)
+            */
+            if (skinTree.SelectedNode != null)
             {
-                using (FileStream stream = File.OpenRead(pathFile))
+                string pathFile = this.manager.GetFullNodePath(skinTree.SelectedNode);
+                try
                 {
-                    this.pic1_path = pathFile;
-                    this.pictureBox1.Image = System.Drawing.Image.FromStream(stream);
-                    this.pictureBox1.ImageLocation = pathFile;
-                    this.box1Label.Text = Path.GetFileName(pathFile);
+                    using (FileStream stream = File.OpenRead(pathFile))
+                    {
+                        this.pic1_path = pathFile;
+                        this.pictureBox1.Image = System.Drawing.Image.FromStream(stream);
+                        this.pictureBox1.ImageLocation = pathFile;
+                        this.box1Label.Text = Path.GetFileName(pathFile);
+                    }
+                }
+                catch (Exception)
+                {
+                    // LilShieru: WRONG grammar.
+                    MessageBox.Show(
+                        "This is an invalid file, please the file must be image or gif",
+                        "Invalid Argument",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                    return;
                 }
             }
-            catch (Exception)
+            else
             {
-                MessageBox.Show(
-                    "This is invalid file, please the file must be image or gif",
-                    "Error Argument invalid!!!",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
-                return;
+                MessageBox.Show("You need to select a skin first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void Box2Placing(object sender, EventArgs e)
         {
-            string pathFile = this.manager.GetFullNodePath(skinTree.SelectedNode);
-            try
+            /*
+             LilShieru added the nodes checking part, otherwise it will cause an exception if no skin is selected.
+             Trust me, I actually downloaded the osu! game just to check if this thing works without any errors :)
+            */
+            if (skinTree.SelectedNode != null)
             {
-                using (FileStream stream = File.OpenRead(pathFile))
+                string pathFile = this.manager.GetFullNodePath(skinTree.SelectedNode);
+                try
                 {
-                    this.pic2_path = pathFile;
-                    this.pictureBox2.Image = System.Drawing.Image.FromStream(stream);
-                    this.pictureBox2.ImageLocation = pathFile;
-                    this.box2Label.Text = Path.GetFileName(pathFile);
+                    using (FileStream stream = File.OpenRead(pathFile))
+                    {
+                        this.pic2_path = pathFile;
+                        this.pictureBox2.Image = System.Drawing.Image.FromStream(stream);
+                        this.pictureBox2.ImageLocation = pathFile;
+                        this.box2Label.Text = Path.GetFileName(pathFile);
+                    }
+                }
+                catch (ArgumentException)
+                {
+                    // LilShieru: WRONG grammar.
+                    MessageBox.Show(
+                        "This is an invalid file, please the file must be image or gif",
+                        "Invalid Argument",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                    return;
                 }
             }
-            catch (ArgumentException)
+            else
             {
-                MessageBox.Show(
-                    "This is invalid file, please the file must be image or gif",
-                    "Error Argument invalid!!!",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
-                return;
+                MessageBox.Show("You need to select a skin first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -181,43 +211,79 @@ namespace Osu_skin_Manager
             if (skinTree.SelectedNode.Text.Contains(".")) return;
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                openFileDialog.Filter = "All files (*.*)|*.*";
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                // LilShieru: PLEASE, ADD the valid_path checking before doing anything, otherwise there's 100% chance errors will happen.
+                if (this.manager.valid_path != null)
                 {
-                    if (!Path.HasExtension(openFileDialog.FileName))
+                    openFileDialog.Filter = "All files (*.*)|*.*";
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
                     {
-                        MessageBox.Show("Are you trying to add a folder to this???", "Error!??!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    string[] name = openFileDialog.FileName.Split('\\');
-                    TreeNode tempNode = new TreeNode(name[name.Length - 1]);
-                    skinTree.SelectedNode.Nodes.Add(tempNode);
+                        if (!Path.HasExtension(openFileDialog.FileName))
+                        {
+                            MessageBox.Show("Are you trying to add a folder to this???", "Error!??!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                        string[] name = openFileDialog.FileName.Split('\\');
+                        TreeNode tempNode = new TreeNode(name[name.Length - 1]);
 
-                    string srcFile = openFileDialog.FileName;
-                    string destFile = Path.Combine(this.manager.GetFullNodePath(skinTree.SelectedNode), Path.GetFileName(srcFile));
-                    if (!File.Exists(destFile))
-                    {
-                        MessageBox.Show("Error: "+ destFile, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
+                        string srcFile = openFileDialog.FileName;
+                        string destFile = Path.Combine(this.manager.GetFullNodePath(skinTree.SelectedNode), Path.GetFileName(srcFile));
+                        // LilShieru: Oh no, you need to add the Copy part before checking the file existence :)
+                        File.Copy(openFileDialog.FileName, destFile, true);
+                        if (!File.Exists(destFile))
+                        {
+                            /*
+                             LilShieru: The old explanation for this error is NOT clear.
+                             The old code:
+                                MessageBox.Show("Error: "+ destFile, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            */
+                            MessageBox.Show("Error: Cannot copy the file " + srcFile + " into " + destFile + "\nPlease check your folder existence and permissions.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                        else
+                        {
+                            // LilShieru: Only add the node if the copy progress was successful.
+                            skinTree.SelectedNode.Nodes.Add(tempNode);
+                        }
                     }
-                    File.Copy(openFileDialog.FileName, destFile, true);
+                }
+                else
+                {
+                    MessageBox.Show("You need to set your osu! skins folder in the Help -> Settings part first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.manager.Delete(this.skinTree.SelectedNode);
-            this.skinTree.Nodes.Remove(this.skinTree.SelectedNode);
-            string pathFile = this.manager.GetFullNodePath(skinTree.SelectedNode);
-            if (File.Exists(pathFile))
+            if (this.skinTree.SelectedNode.Text != "Skins")
             {
-                MessageBox.Show("Look like this file doesnt exist, guess i delete this for you :)", "Error...", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                // LilShieru: You should add the deletion confirmation first.
+                if (MessageBox.Show("Are you sure that you want to delete this thing?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    // LilShieru: I just added the delete function returning part to make the node not being deleted if the deletion wasn't successful.
+                    if (this.manager.Delete(this.skinTree.SelectedNode))
+                    {
+                        this.skinTree.Nodes.Remove(this.skinTree.SelectedNode);
+                        string pathFile = this.manager.GetFullNodePath(skinTree.SelectedNode);
+                        /*
+                            LilShieru: I actually didn't understand what you're telling the application to do at this part?
+                            The old code:
+                                if (File.Exists(pathFile))
+                                {
+                                    MessageBox.Show("Look like this file doesnt exist, guess I'll delete this for you :)", "Error...", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    return;
+                                }
+                                Console.WriteLine(pathFile);
+                                File.Delete(pathFile);
+                        */
+                        if (File.Exists(pathFile)) File.Delete(pathFile);
+                    }
+                }
             }
-            Console.WriteLine(pathFile);
-            File.Delete(pathFile);
-
+            else
+            {
+                MessageBox.Show("Delete the entire Skins folder? Why?", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void openInExplorerToolStripMenuItem_Click(object sender, EventArgs e)
@@ -234,6 +300,12 @@ namespace Osu_skin_Manager
         private void minimizedBtnClick(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void aboutMenu_Click(object sender, EventArgs e)
+        {
+            // LilShieru: Why did you add the About section in the menu bar without adding the actual about part?
+            MessageBox.Show("osu! Skins Manager v0.1\nMade by CallMeQan and fixed by LilShieru\nBuild date: August 2, 2021", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         /* This thing for right click menu, but it's now kinda broken :(
         * 

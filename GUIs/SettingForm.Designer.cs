@@ -81,9 +81,9 @@ namespace Osu_skin_Manager.GUIs
             this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 19);
+            this.label1.Size = new System.Drawing.Size(81, 19);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Setting";
+            this.label1.Text = "Settings";
             // 
             // SettingForm
             // 

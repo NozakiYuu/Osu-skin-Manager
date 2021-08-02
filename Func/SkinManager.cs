@@ -32,8 +32,19 @@ namespace Osu_skin_Manager
 
             if (this.valid_path == null)
             {
+                /*
+                 LilShieru: WRONG instructions, what is "File -> Open osu! skins folder"?
+                            Also, incorrect grammar, "manually" not "manual".
+                 The OLD code:
+                    MessageBox.Show(
+                        "Sorry but i couldn't found your osu skins folder, please set it manual in File > Open osu skins folder", 
+                        "Invalid skins folder",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                */
                 MessageBox.Show(
-                    "Sorry but i couldn't found your osu skins folder, please set it manual in File > Open osu skins folder", 
+                    "Sorry but i couldn't found your osu! skins folder, please set it manually in the Help -> Settings part.",
                     "Invalid skins folder",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
@@ -78,14 +89,20 @@ namespace Osu_skin_Manager
         {
             TreeNode mainNode = new TreeNode("Skins");
 
-            // First loop for checking skin name!
-            foreach (string path_to_folder in Directory.GetDirectories(this.valid_path))
+            // LilShieru: When the application cannot find the skins folder (this.valid_path == null), DON't run the foreach command, otherwise it will cause an exception error.
+
+            if (this.valid_path != null && Directory.Exists(this.valid_path))
             {
-                TreeNode skinNodeTemp = new TreeNode(Path.GetFileName(path_to_folder));
-                this.GetFileFromPath(path_to_folder).ForEach(node => {
-                    skinNodeTemp.Nodes.Add(node);
-                });
-                mainNode.Nodes.Add(skinNodeTemp);
+                // First loop for checking skin name!
+                foreach (string path_to_folder in Directory.GetDirectories(this.valid_path))
+                {
+                    TreeNode skinNodeTemp = new TreeNode(Path.GetFileName(path_to_folder));
+                    this.GetFileFromPath(path_to_folder).ForEach(node =>
+                    {
+                        skinNodeTemp.Nodes.Add(node);
+                    });
+                    mainNode.Nodes.Add(skinNodeTemp);
+                }
             }
             return mainNode;
         }
@@ -108,7 +125,7 @@ namespace Osu_skin_Manager
             return tempNode;
         }
 
-        public void Delete(TreeNode node) {
+        public bool Delete(TreeNode node) {
             string path_to_file = this.GetFullNodePath(node);
             try
             {
@@ -117,12 +134,14 @@ namespace Osu_skin_Manager
             catch (Exception e)
             {
                 MessageBox.Show(
-                    "Error" + e.Message,
-                    "Error File!",
+                    e.Message,
+                    "Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
                 );
+                return false;
             }
+            return true;
         }
 
     }

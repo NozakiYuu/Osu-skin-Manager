@@ -13,7 +13,7 @@ namespace Osu_skin_Manager
         {
             if (!(System.IO.File.Exists(filePath) || System.IO.Directory.Exists(filePath)))
             {
-                MessageBox.Show("Invalid file or folder path: "+filePath, "Error, doesnt exist!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Invalid file or folder path: "+filePath, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             try
@@ -24,11 +24,9 @@ namespace Osu_skin_Manager
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "Error exception cause!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, "Exception Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            //Clean up file path so it can be navigated OK
-            
         }
 
         public static bool ReplaceFile(string path1, string path2) {

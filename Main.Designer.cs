@@ -141,15 +141,16 @@ namespace Osu_skin_Manager
             // settingMenuBar
             // 
             this.settingMenuBar.Name = "settingMenuBar";
-            this.settingMenuBar.Size = new System.Drawing.Size(130, 22);
+            this.settingMenuBar.Size = new System.Drawing.Size(152, 22);
             this.settingMenuBar.Text = "Settings";
             this.settingMenuBar.Click += new System.EventHandler(this.settingMenuBar_Click);
             // 
             // aboutMenu
             // 
             this.aboutMenu.Name = "aboutMenu";
-            this.aboutMenu.Size = new System.Drawing.Size(130, 22);
+            this.aboutMenu.Size = new System.Drawing.Size(152, 22);
             this.aboutMenu.Text = "About";
+            this.aboutMenu.Click += new System.EventHandler(this.aboutMenu_Click);
             // 
             // replaceBtn
             // 
